@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_info_dep,usl_bs_employee_management.employee_info,model_employee_info,usl_bs_employee_management.group_employee_management_dep_manager,1,0,0,0
+access_employee_info_hr,usl_bs_employee_management.employee_info,model_employee_info,usl_bs_employee_management.group_employee_management_hr_manager,1,1,1,1
+access_emergency_contact,usl_bs_employee_management.emergency_contact,model_emergency_contact,base.group_user,1,1,1,1
+access_education_info,usl_bs_employee_management.education_info,model_education_info,base.group_user,1,1,1,1
+access_leave_info,usl_bs_employee_management.leave_info,model_leave_info,base.group_user,1,1,1,1

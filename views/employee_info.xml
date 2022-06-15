@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_employee_info_form" model="ir.ui.view">
+            <field name="name">Employee Info Form</field>
+            <field name="model">employee.info</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1 class="mt0">
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="designation"/>
+                                <field name="date_of_birth"/>
+                            </group>
+                            <group>
+                                <field name="manager_id"/>
+                                <field name="department"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="emergency_contact_id" string="Emergency Contact Information">
+                                <field id="concat_id" name="emergency_contact_id" class="tree_no_open">
+                                    <tree editable="bottom" options="{'no_open': True}" class="tree_no_open">
+                                        <field name="name"/>
+                                        <field name="address"/>
+                                        <field name="phone"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <notebook>
+                            <page name="education_info_id" string="Education Information">
+                                <field id="education_id" name="education_info_id" class="tree_no_open">
+                                    <tree editable="bottom" options="{'no_open': True}" class="tree_no_open">
+                                        <field name="institute"/>
+                                        <field name="degree"/>
+                                        <field name="passing_year"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <notebook>
+                            <page name="leave_info_id" string="Leave Information">
+                                <field id="leave_id" name="leave_info_id" class="tree_no_open">
+                                    <tree editable="bottom" options="{'no_open': True}" class="tree_no_open">
+                                        <field name="leave_type"/>
+                                        <field name="leave_days"/>
+                                        <field name="Leave_period"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_employee_info_tree" model="ir.ui.view">
+            <field name="name">Employee Info Tree</field>
+            <field name="model">employee.info</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc">
+                    <field name="name"/>
+                    <field name="date_of_birth"/>
+                    <field name="designation"/>
+                    <field name="manager_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_employee_info_menu" model="ir.actions.act_window">
+            <field name="name">Employee Info</field>
+            <field name="res_model">employee.info</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('usl_bs_employee_management.view_employee_info_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('usl_bs_employee_management.view_employee_info_form')})]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Employee Info
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_employee_info"
+                  name="Employee Info"
+                  parent="sale.sale_order_menu"
+                  action="action_employee_info_menu"
+                  sequence="5"/>
+    </data>
+</odoo>
